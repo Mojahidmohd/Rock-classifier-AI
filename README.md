@@ -1,6 +1,6 @@
-# RockSense AI: Hybrid Cloud-to-Edge Geological Classification 🪨⚡
+# Rock Classifier AI: Hybrid Cloud-to-Edge Geological Classification 🪨⚡
 
-**RockSense AI** is a professional-grade computer vision platform designed for the mining and geology sectors. We bridge the gap between high-powered cloud analysis and zero-connectivity field work.
+**Rock Classifier AI** is a professional-grade computer vision platform designed for the mining and geology sectors. We bridge the gap between high-powered cloud analysis and zero-connectivity field work.
 
 [![AWS Powered](https://img.shields.io/badge/AWS-SageMaker-orange?logo=amazon-aws)](https://aws.amazon.com/sagemaker/)
 [![PyTorch Native](https://img.shields.io/badge/Framework-PyTorch-EE4C2C?logo=pytorch)](https://pytorch.org/)
@@ -9,7 +9,7 @@
 ---
 
 ## 🚀 The Vision: Precision Without Connectivity
-In the field—whether it's the Eastern Desert or deep underground—internet is non-existent. RockSense AI evolved from **Amazon Rekognition** prototypes into a custom **Amazon SageMaker** hybrid pipeline to provide:
+In the field—whether it's the Desert or deep underground—internet is non-existent. Rock Classifier AI evolved from **Amazon Rekognition** prototypes into a custom **Amazon SageMaker** hybrid pipeline to provide:
 1. **Instant Offline ID:** On-device **PyTorch Mobile (`.ptl`)** inference for real-time results.
 2. **Cloud Forensic Audit:** Professional verification via high-precision **PyTorch (`.pth`)** models hosted on SageMaker.
 
@@ -23,7 +23,7 @@ Our model is specifically trained to identify and distinguish between 18 geologi
 
 ## 🛠 Technical Architecture
 
-![RockSense Architecture](./Project-Diagram.png)
+![Rock Classifier Architecture](./Project-Diagram.png)
 
 Our architecture follows the AWS Well-Architected Framework:
 
@@ -32,12 +32,123 @@ Our architecture follows the AWS Well-Architected Framework:
 * **Purpose:** High-precision "Gold Standard" verification.
 * **Tech:** Custom **`.pth`** models trained on GPU-optimized instances (`ml.g4dn`).
 
+* **Lambda Code:**
+
+```python
+import json
+import boto3
+import base64
+import uuid
+import time
+from decimal import Decimal
+import os
+
+# Environment variables
+DDB_TABLE_NAME = os.environ["DDB_TABLE"]
+ENDPOINT_NAME = os.environ.get("SAGEMAKER_ENDPOINT", "rocksense-pytorch-endpoint")
+REGION = os.environ.get("REGION", "us-east-1")
+
+# Initialize clients
+dynamodb = boto3.resource("dynamodb", region_name=REGION)
+sagemaker_runtime = boto3.client("sagemaker-runtime", region_name=REGION)
+table = dynamodb.Table(DDB_TABLE_NAME)
+
+def to_decimal(obj):
+    if isinstance(obj, list):
+        return [to_decimal(i) for i in obj]
+    elif isinstance(obj, dict):
+        return {k: to_decimal(v) for k, v in obj.items()}
+    elif isinstance(obj, float):
+        return Decimal(str(obj))
+    else:
+        return obj
+
+def decimal_to_float(obj):
+    if isinstance(obj, list):
+        return [decimal_to_float(i) for i in obj]
+    elif isinstance(obj, dict):
+        return {k: decimal_to_float(v) for k, v in obj.items()}
+    elif isinstance(obj, Decimal):
+        return float(obj)
+    else:
+        return obj
+
+def lambda_handler(event, context):
+    headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+    }
+
+    http_method = event.get("httpMethod") or event.get("requestContext", {}).get("http", {}).get("method")
+
+    if http_method == "OPTIONS":
+        return {"statusCode": 200, "headers": headers, "body": ""}
+
+    try:
+        # Step 0: Extract Body
+        body_raw = event.get("body", "{}")
+        if event.get("isBase64Encoded", False):
+            body_raw = base64.b64decode(body_raw).decode('utf-8')
+
+        body = json.loads(body_raw) if isinstance(body_raw, str) else body_raw
+        image_b64 = body.get("image")
+        meta = body.get("meta", {})
+
+        if not image_b64:
+            return {"statusCode": 400, "headers": headers, "body": json.dumps({"error": "Missing image"})}
+
+        item_id = str(uuid.uuid4())
+        timestamp = Decimal(str(time.time()))
+
+        # Step 1: Store initial metadata in DynamoDB
+        item = {
+            "id": item_id,
+            "timestamp": timestamp,
+            "image_preview": image_b64[:100], # Store preview to keep DDB item size small
+            "meta": meta,
+            "prediction": {} 
+        }
+
+        # Step 2: Decode image for SageMaker
+        image_bytes = base64.b64decode(image_b64 + "=" * (-len(image_b64) % 4))
+
+        # Step 3: Invoke SageMaker Endpoint (PyTorch .pth model)
+        try:
+            sm_resp = sagemaker_runtime.invoke_endpoint(
+                EndpointName=ENDPOINT_NAME,
+                ContentType='application/x-image',
+                Body=image_bytes
+            )
+            # Assuming SageMaker returns JSON: {"prediction": "Basalt", "confidence": 0.98}
+            prediction_result = json.loads(sm_resp['Body'].read().decode())
+        except Exception as sm_err:
+            print(f"SageMaker Error: {str(sm_err)}")
+            prediction_result = {"error": str(sm_err)}
+
+        # Step 4: Update DynamoDB item with prediction
+        item["prediction"] = to_decimal(prediction_result)
+        table.put_item(Item=item)
+
+        # Step 5: Return JSON
+        response_body = {
+            "message": "Geological analysis complete",
+            "id": item_id,
+            "results": decimal_to_float(prediction_result)
+        }
+
+        return {"statusCode": 200, "headers": headers, "body": json.dumps(response_body)}
+
+    except Exception as e:
+        print(f"Global Error: {str(e)}")
+        return {"statusCode": 500, "headers": headers, "body": json.dumps({"error": str(e)})}
+```
+		
 ### 2. The Offline Pipeline (Edge)
 `Mobile APK` <-> `On-Device PyTorch Mobile Model`
 * **Purpose:** Zero-latency field classification.
 * **Tech:** SageMaker-trained `.pth` models scripted and optimized into **`.ptl`** binaries for mobile CPU/GPU inference.
-
----
 
 ## 🛠 Model Transformation Script
 To bridge the gap between our **Amazon SageMaker** training environment and our **Offline Android APK**, we use the following distillation script. This process converts the full-precision PyTorch weights (`.pth`) into an optimized Lite Interpreter format (`.ptl`).
@@ -75,7 +186,7 @@ optimized_model = optimize_for_mobile(scripted_model)
 # 4. SAVE FOR LITE INTERPRETER
 filename = "rock_model_final.ptl"
 optimized_model._save_for_lite_interpreter(filename)
-print(f"🚀 DONE! '{filename}' is ready for the RockSense APK.")
+print(f"🚀 DONE! '{filename}' is ready for the Rock Classifier APK.")
 ```
 
 ---
@@ -99,8 +210,11 @@ Click the button below to download the latest offline-ready APK.
 * **Step 3:** Start identifying rocks instantly—**100% Offline.**
 
 ### 🧠 Model Assets (Developer Access)
-* **Cloud Weights:** [`model.pth`](YOUR_LINK_HERE) (Full-precision SageMaker weights)
-* **Mobile Weights:** [`model.ptl`](YOUR_LINK_HERE) (Optimized Lite interpreter version)
+We provide multiple sources for the model weights to ensure availability for both production and auditing.
+
+* **Cloud Weights (.pth):**  [Primary: GitHub Repository](./model.tar.gz) (Local Archive) and 
+                             [Mirror: Google Drive](https://drive.google.com/file/d/1JOn6ztm1-DxRLukDCOrc3bbaYloEwxN2/view?usp=sharing) (Full-precision SageMaker weights)
+* **Mobile Weights (.ptl):** [Google Drive](https://drive.google.com/file/d/1d7HoxXrdT6WysX6oM3Y-bZwm5vUtcfXj/view?usp=sharing) (Optimized Lite interpreter version)
 
 ---
 
@@ -117,4 +231,9 @@ This project is licensed under the MIT License.
 ## 🤝 Contact & Community
 - **Founder:** Mojahid Daffallah
 - **LinkedIn:** https://www.linkedin.com/in/mojahid-daffallah
-- **Tags:** #RockClassifierAI #AWS #SageMaker #PyTorch #GeologyAI #MiningTech
+
+- **Core Tags:**
+  #RockClassifierAI #AWS #SageMaker #PyTorch #GeologyAI #MiningTech #AIonEdge 
+
+- **Professional & Architecture Tags:**
+  #AWSCertified #SolutionsArchitect #MLOps #InfrastructureAsCode #CloudArchitecture #ComputerVision #PyTorchMobile #ResponsibleAI #DigitalMining
