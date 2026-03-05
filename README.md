@@ -49,9 +49,9 @@ Click the button below to download the latest offline-ready APK.
 
 [![Download APK](https://img.shields.io/badge/Download-Offline_APK-blue?style=for-the-badge&logo=android)](YOUR_GOOGLE_DRIVE_LINK_HERE)
 
-**Note:** You may need to enable "Install from Unknown Sources" in your device settings.
-**Note:** You may need to give permission accsess to Camera.*
-Start identifying rocks instantly—**no internet required.**
+- **Note:** You may need to enable "Install from Unknown Sources" in your device settings.
+- **Note:** You may need to give permission accsess to Camera.*
+- Start identifying rocks instantly—**no internet required.**
 
 ### Online API Access
 The professional verification API is currently in closed beta. Review our [API Documentation](./docs/api_docs.md) for SageMaker endpoint integration details.
