@@ -34,7 +34,7 @@ Our architecture follows the AWS Well-Architected Framework:
 * **Purpose:** Zero-latency field classification.
 * **Tech:** SageMaker-trained `.pth` models scripted and optimized into **`.ptl`** binaries for mobile CPU/GPU inference.
 
-  ---
+---
 
 ## 🛠 Model Transformation Script
 To bridge the gap between our **Amazon SageMaker** training environment and our **Offline Android APK**, we use the following distillation script. This process converts the full-precision PyTorch weights (`.pth`) into an optimized Lite Interpreter format (`.ptl`).
@@ -73,6 +73,7 @@ optimized_model = optimize_for_mobile(scripted_model)
 filename = "rock_model_final.ptl"
 optimized_model._save_for_lite_interpreter(filename)
 print(f"🚀 DONE! '{filename}' is ready for the RockSense APK.")
+```
 
 ---
 
