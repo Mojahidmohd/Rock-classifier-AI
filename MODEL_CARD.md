@@ -1,7 +1,7 @@
 # Model Card: Rock Classifier-V1-Hybrid 🪨
 
 ## 1. Model Details
-- **Developed by:** Rock Classifier AI (Founder: [Mojahid Daffallah])
+- **Developed by:** Rock Classifier AI (Founder: **Mojahid Daffallah**)
 - **Model Date:** March 2026
 - **Model Type:** Convolutional Neural Network (CNN) optimized for Geological Feature Extraction.
 - **Framework:** Developed in TensorFlow, trained via **Amazon SageMaker**, deployed via TFLite.
@@ -33,4 +33,5 @@ The model is trained on a curated dataset of high-resolution mineral images. It 
 - This model is an assistive tool and should not replace professional laboratory chemical analysis for high-stakes mining investments.
 
 - Performance may vary based on lighting conditions and camera quality.
+
 
