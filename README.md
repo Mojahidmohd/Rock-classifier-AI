@@ -45,7 +45,7 @@ Our architecture follows the AWS Well-Architected Framework:
 
 ## 📥 Getting Started
 ### Mobile Field App (Beta)
-1. Download the latest **RockSense.apk** from the [Releases](link-to-release) page.
+1. Download the latest **Rock Classification.apk** from the [Releases](link-to-release) page.
 2. Install on any Android device with a modern camera.
 3. Start identifying rocks instantly—**no internet required.**
 
