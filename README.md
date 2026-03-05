@@ -37,8 +37,8 @@ Our architecture follows the AWS Well-Architected Framework:
 
 ## 📂 Repository Structure
 * `/app`: The Android APK source code and assets.
-* `/model`: The distilled `.tflite` model and metadata.
-* `/docs`: Architecture diagrams and technical specifications.
+* `model.tar.gz`: The distilled `.tflite` model and metadata.
+* `Project-Diagram.png`: Architecture diagrams and technical specifications.
 * `MODEL_CARD.md`: Detailed scientific specifications of the AI model.
 
 ---
