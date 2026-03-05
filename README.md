@@ -115,6 +115,6 @@ Click the button below to download the latest offline-ready APK.
 This project is licensed under the MIT License.
 
 ## 🤝 Contact & Community
-- **Founder:** [Your Name]
-- **LinkedIn:** [Insert Link]
-- **Tags:** #RockSenseAI #AWS #SageMaker #PyTorch #GeologyAI #MiningTech
+- **Founder:** Mojahid Daffallah
+- **LinkedIn:** https://www.linkedin.com/in/mojahid-daffallah
+- **Tags:** #RockClassifierAI #AWS #SageMaker #PyTorch #GeologyAI #MiningTech
