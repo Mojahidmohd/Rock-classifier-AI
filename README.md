@@ -22,6 +22,9 @@ Our model is specifically trained to identify and distinguish between 18 geologi
 ---
 
 ## 🛠 Technical Architecture
+
+![RockSense Architecture](./Project-Diagram.png)
+
 Our architecture follows the AWS Well-Architected Framework:
 
 ### 1. The Online Pipeline (Verification)
