@@ -28,7 +28,7 @@ Our model is specifically trained to identify and distinguish between 18 geologi
 Our architecture follows the AWS Well-Architected Framework:
 
 ### 1. The Online Pipeline (Verification)
-`User` -> `Amazon API Gateway` -> `AWS Lambda` -> `Amazon SageMaker Endpoint`
+`User` -> `AWS Lambda` -> `Amazon SageMaker Endpoint`
 * **Purpose:** High-precision "Gold Standard" verification.
 * **Tech:** Custom **`.pth`** models trained on GPU-optimized instances (`ml.g4dn`).
 
