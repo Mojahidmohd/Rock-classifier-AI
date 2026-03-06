@@ -203,7 +203,7 @@ print(f"🚀 DONE! '{filename}' is ready for the Rock Classifier APK.")
 ### 📱 Mobile Field App (Beta)
 Click the button below to download the latest offline-ready APK.
 
-[![Download APK](https://img.shields.io/badge/Download-Offline_APK-blue?style=for-the-badge&logo=android)](YOUR_GOOGLE_DRIVE_LINK_HERE)
+[![Download APK](https://img.shields.io/badge/Download-Offline_APK-blue?style=for-the-badge&logo=android)](https://drive.google.com/file/d/1d7HoxXrdT6WysX6oM3Y-bZwm5vUtcfXj/view?usp=sharing)
 
 * **Step 1:** Enable "Install from Unknown Sources" in your Android device settings.
 * **Step 2:** Grant **Camera Access** to allow the model to process live geological samples.
@@ -214,7 +214,8 @@ We provide multiple sources for the model weights to ensure availability for bot
 
 * **Cloud Weights (.pth):**  [Primary: GitHub Repository](./model.tar.gz) (Local Archive) and 
                              [Mirror: Google Drive](https://drive.google.com/file/d/1JOn6ztm1-DxRLukDCOrc3bbaYloEwxN2/view?usp=sharing) (Full-precision SageMaker weights)
-* **Mobile Weights (.ptl):** [Google Drive](https://drive.google.com/file/d/1d7HoxXrdT6WysX6oM3Y-bZwm5vUtcfXj/view?usp=sharing) (Optimized Lite interpreter version)
+* **Mobile Weights (.ptl):** [Primary: GitHub Repository](./mobile_rock_model.zip) (Local Archive) and
+                             [Mirror: Google Drive](https://drive.google.com/file/d/1mLSwZV1WasJsWli0XM8vfwRipaSMmsug/view?usp=sharing) (Optimized Lite interpreter version)
 
 ---
 
