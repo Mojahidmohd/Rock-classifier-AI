@@ -193,9 +193,10 @@ print(f"🚀 DONE! '{filename}' is ready for the Rock Classifier APK.")
 
 ## 📂 Repository Structure
 * `model.tar.gz`: The SageMaker archive containing the training weights (**`model.pth`**).
+* `mobile_rock_model.zip`: Optimized mobile package containing the (**`model.ptl`**) (Lite Interpreter) model for Android deployment.
 * `Project-Diagram.png`: Architecture diagrams and technical specifications.
 * `MODEL_CARD.md`: Detailed scientific specifications of the AI model.
-
+  
 ---
 
 ## 📥 Getting Started
