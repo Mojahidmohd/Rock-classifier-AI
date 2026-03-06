@@ -217,6 +217,11 @@ We provide multiple sources for the model weights to ensure availability for bot
 * **Mobile Weights (.ptl):** [Primary: GitHub Repository](./mobile_rock_model.zip?raw=true) (Local Archive) and
                              [Mirror: Google Drive](https://drive.google.com/file/d/1mLSwZV1WasJsWli0XM8vfwRipaSMmsug/view?usp=sharing) (Optimized Lite interpreter version)
 
+### 🧠 Model Assets (Developer Access)
+* **Cloud Weights (.pth):** [Primary: GitHub Release](https://github.com/Mojahidmohd/Rock-classifier-AI/releases/latest/download/model.tar.gz) (Local Archive) | (https://drive.google.com/file/d/1JOn6ztm1-DxRLukDCOrc3bbaYloEwxN2/view?usp=sharing) (Full-precision SageMaker weights)
+* **Mobile Weights (.ptl):** [Primary: GitHub Release](https://github.com/Mojahidmohd/Rock-classifier-AI/releases/latest/download/mobile_rock_model.zip) (Local Archive) | [Mirror: Google Drive](https://drive.google.com/file/d/1mLSwZV1WasJsWli0XM8vfwRipaSMmsug/view?usp=sharing) (Optimized Lite interpreter version)
+
+
 ---
 
 ## 🏆 Project Evolution
