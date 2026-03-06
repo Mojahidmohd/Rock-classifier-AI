@@ -212,7 +212,7 @@ Click the button below to download the latest offline-ready APK.
 ### 🧠 Model Assets (Developer Access)
 We provide multiple sources for the model weights to ensure availability for both production and auditing.
 
-* **Cloud Weights (.pth):**  [Primary: GitHub Repository](./model.tar.gz) (Local Archive) and 
+* **Cloud Weights (.pth):**  [Primary: GitHub Repository](./rock_model.tar.gz) (Local Archive) and 
                              [Mirror: Google Drive](https://drive.google.com/file/d/1JOn6ztm1-DxRLukDCOrc3bbaYloEwxN2/view?usp=sharing) (Full-precision SageMaker weights)
 * **Mobile Weights (.ptl):** [Primary: GitHub Repository](./mobile_rock_model.zip) (Local Archive) and
                              [Mirror: Google Drive](https://drive.google.com/file/d/1mLSwZV1WasJsWli0XM8vfwRipaSMmsug/view?usp=sharing) (Optimized Lite interpreter version)
