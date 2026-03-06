@@ -43,7 +43,7 @@ import time
 from decimal import Decimal
 import os
 
-# Environment variables
+# Update to your environment variables
 DDB_TABLE_NAME = os.environ["DDB_TABLE"]
 ENDPOINT_NAME = os.environ.get("SAGEMAKER_ENDPOINT", "rocksense-pytorch-endpoint")
 REGION = os.environ.get("REGION", "us-east-1")
