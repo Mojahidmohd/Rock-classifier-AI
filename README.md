@@ -291,7 +291,7 @@ Click the button below to download the latest offline-ready APK.
 * **Step 3:** Start identifying rocks instantly—**100% Offline.**
 
 ### 🧠 Model Assets (Developer Access)
-* **Cloud Weights (.pth):** [Primary: GitHub Release](https://github.com/Mojahidmohd/Rock-classifier-AI/releases/latest/download/rock_model.tar.gz) | [Mirror: Google Drive](https://drive.google.com/file/d/1JOn6ztm1-DxRLukDCOrc3bbaYloEwxN2/view?usp=sharing) (Full-precision SageMaker weights)
+* **Cloud Weights (.pth):** [Primary: GitHub Release](https://github.com/Mojahidmohd/Rock-classifier-AI/releases/latest/download/rock_model.tar.gz) | [Mirror: Google Drive](https://drive.google.com/file/d/1xSlWUabu_1p3pUeTWJyrovp_VJqTjEV0/view?usp=sharing) (Full-precision SageMaker weights)
 * **Mobile Weights (.ptl):** [Primary: GitHub Release](https://github.com/Mojahidmohd/Rock-classifier-AI/releases/latest/download/mobile_rock_model.zip) | [Mirror: Google Drive](https://drive.google.com/file/d/1mLSwZV1WasJsWli0XM8vfwRipaSMmsug/view?usp=sharing) (Optimized Lite interpreter version)
 
 ---
