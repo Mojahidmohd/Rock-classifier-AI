@@ -87,7 +87,7 @@ HTML_PAGE = """
 <div class="container" style="max-width: 600px;">
     <div class="card shadow-lg">
         <div class="card-header text-center bg-white border-0 pt-4">
-            <h3 class="fw-bold">⚒️ Rock Classifiere AI</h3>
+            <h3 class="fw-bold">⚒️ Rock Classifier AI</h3>
             <p class="text-muted small">18-Class Geological Identification</p>
         </div>
         <div class="card-body px-4 pb-5">
@@ -277,6 +277,17 @@ print(f"🚀 DONE! '{filename}' is ready for the Rock Classifier APK.")
 * `Project-Diagram.png`: Architecture diagrams and technical specifications.
 * `MODEL_CARD.md`: Detailed scientific specifications of the AI model.
   
+---
+
+<p align="center">
+  <img src="./Website.png" height="350" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./Mobile-App.jpg" height="350" />
+</p>
+<p align="center">
+  <i>Left: Web Cloud Results | Right: Mobile App Analysis</i>
+</p>
+
 ---
 
 ## 📥 Getting Started
