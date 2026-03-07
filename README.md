@@ -45,7 +45,7 @@ import os
 
 # Update environment Variables
 DDB_TABLE_NAME = os.environ.get("DDB_TABLE", "RockClassifierPredictions")
-ENDPOINT_NAME = os.environ.get("SAGEMAKER_ENDPOINT", "Rock-Lambda")
+ENDPOINT_NAME = os.environ.get("SAGEMAKER_ENDPOINT", "Rock-Lambda-Endpoint")
 REGION = os.environ.get("REGION", "us-east-1")
 
 # Initialize clients
