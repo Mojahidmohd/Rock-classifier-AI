@@ -45,7 +45,7 @@ import os
 
 # Update environment Variables
 DDB_TABLE_NAME = os.environ.get("DDB_TABLE", "RockClassifierPredictions")
-ENDPOINT_NAME = os.environ.get("SAGEMAKER_ENDPOINT", "RockClassifiere-pytorch-endpoint")
+ENDPOINT_NAME = os.environ.get("SAGEMAKER_ENDPOINT", "Rock-Lambda")
 REGION = os.environ.get("REGION", "us-east-1")
 
 # Initialize clients
@@ -148,7 +148,7 @@ HTML_PAGE = """
                         <div class="alert alert-success border-0 shadow-sm">
                             <h6 class="fw-bold mb-1">✅ Detection Result:</h6>
                             <p class="h4 mb-1 text-success">${label}</p>
-                            <hr><small class="text-muted">Confidence: ${conf} | ID: ${data.id}</small>
+                            <hr><small class="text-muted">Confidence: ${conf}</small>
                         </div>`;
                 } else {
                     resultArea.innerHTML = `<div class="alert alert-danger">Error: ${data.error}</div>`;
