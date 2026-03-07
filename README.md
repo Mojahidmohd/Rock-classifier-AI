@@ -74,7 +74,8 @@ HTML_PAGE = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="jioufAggfplTlLIDY1rs0t1yq9-AdLT0YWVfsVyBthc" />
-    <title>Rock Classifiere AI - Portal</title>
+
+    <title>Rock Classifier AI - Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background: #f0f2f5; font-family: sans-serif; padding-top: 50px; }
